@@ -3,15 +3,22 @@ import { RichText } from 'prismic-reactjs'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { getAllProjects, getProject } from '../lib/api'
 import Head from 'next/head'
+import Gallery from '../components/Gallery'
 
 type IProps = {
   project: Project
+  images: any[]
 }
 
 export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
+  const project: Project = await getProject((params as any).project)
   return {
     props: {
-      project: await getProject((params as any).project),
+      images: await project.images.map(({ image }) => ({
+        alt: image.alt,
+        src: image.url,
+      })),
+      project,
       projects: await getAllProjects(),
     },
   }
@@ -28,23 +35,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-const Project: FunctionComponent<IProps> = ({ project }) => {
+const Project: FunctionComponent<IProps> = ({ project, images }) => {
   return (
     <>
       <Head>
         <title>{RichText.asText(project.name)}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="gallery">
-        {project.images.map(({ image }) => (
-          <img key={image.url} src={image.url} />
-        ))}
-      </div>
-      <style jsx>{`
-        .gallery {
-          max-width: 600px;
-        }
-      `}</style>
+      <Gallery images={images} />
     </>
   )
 }

@@ -14,7 +14,9 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
     <>
       <header>
         <Link href="/">
-          <h1 className="logo">{process.env.NEXT_PUBLIC_SITE_TITLE}</h1>
+          <a>
+            <h1 className="logo">{process.env.NEXT_PUBLIC_SITE_TITLE}</h1>
+          </a>
         </Link>
         <ul className="project-links">
           {projects.map((p) => (
@@ -40,14 +42,15 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           min-width: 200px;
         }
 
-        header > * {
-          margin-bottom: 20px;
-        }
-
         .logo {
-          margin: 0;
+          margin-top: 0;
+          margin-bottom: 20px;
           font-weight: inherit;
           font-size: inherit;
+        }
+
+        header > * {
+          margin-bottom: 20px;
         }
 
         .project-link {
