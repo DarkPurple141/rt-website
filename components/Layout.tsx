@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react'
+import { TABLET_BREAKPOINT } from '../lib/constants'
 
 const Layout: FunctionComponent = ({ children }) => (
   <div id="app">
@@ -11,9 +12,10 @@ const Layout: FunctionComponent = ({ children }) => (
         padding: 50px;
       }
 
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
         #app {
-          padding: 20px;
+          flex-direction: column;
+          padding: 0;
         }
       }
     `}</style>

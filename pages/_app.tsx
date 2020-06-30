@@ -10,7 +10,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <Layout>
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_TITLE}</title>
+        <meta
+          property="og:site_name"
+          content={process.env.NEXT_PUBLIC_SITE_TITLE}
+        />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <meta property="og:type" content="website" />
       </Head>
       <Header projects={pageProps.projects}></Header>
       <main>

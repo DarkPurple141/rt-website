@@ -2,8 +2,8 @@ import { FunctionComponent } from 'react'
 import { RichText } from 'prismic-reactjs'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { getAllProjects, getProject } from '../lib/api'
-import Head from 'next/head'
 import Gallery from '../components/Gallery'
+import HeadBase from '../components/Head'
 
 type IProps = {
   project: Project
@@ -36,12 +36,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Project: FunctionComponent<IProps> = ({ project, images }) => {
+  {
+    RichText.asText(project.name)
+  }
   return (
     <>
-      <Head>
-        <title>{RichText.asText(project.name)}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <HeadBase
+        id={project.uid}
+        title={RichText.asText(project.name)}
+        imageUrl={images[0] ? images[0].src : '/lilyfield.jpg'}
+      />
       <Gallery images={images} />
     </>
   )
