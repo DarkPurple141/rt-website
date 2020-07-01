@@ -13,9 +13,10 @@ type IProps = {
 
 export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
   const projectSlug = await getProject((params as any).project)
+  const images = projectSlug.data.images as any[]
   return {
     props: {
-      images: await projectSlug.data.images.map(({ image }) => ({
+      images: images.map(({ image }) => ({
         alt: image.alt,
         src: image.url,
       })),
