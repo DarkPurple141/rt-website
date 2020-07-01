@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useState, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { TABLET_BREAKPOINT } from '../lib/constants'
@@ -10,13 +10,14 @@ type IProps = {
 
 const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
   const router = useRouter()
-  const [isOpen, setIsOpen] = useState(false)
+  const [height, setHeight] = useState(0)
+  const ref = useRef<HTMLUListElement>(null)
   const match = router.query && (router.query.project as string)
 
   return (
     <>
-      <div id="mobileNav" className={isOpen ? 'open' : ''}>
-        <NavLinks selectedLink={match} links={projects} />
+      <div id="mobileNav" style={{ height }}>
+        <NavLinks ref={ref} selectedLink={match} links={projects} />
       </div>
       <header>
         <Link href="/">
@@ -24,7 +25,18 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
             <h1 className="logo">{process.env.NEXT_PUBLIC_SITE_TITLE}</h1>
           </a>
         </Link>
-        <a id="navMenuButton" onClick={() => setIsOpen((state) => !state)}>
+        <a
+          id="navMenuButton"
+          onClick={() =>
+            setHeight((oldHeight) => {
+              if (oldHeight) {
+                return 0
+              }
+
+              return ref.current?.clientHeight || 0
+            })
+          }
+        >
           Menu
         </a>
         <NavLinks
@@ -39,10 +51,6 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           display: none;
           overflow: hidden;
           transition: height 0.2s ease-in-out;
-        }
-
-        #mobileNav.open {
-          height: 450px;
         }
 
         #navMenuButton {

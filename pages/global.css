@@ -67,3 +67,17 @@ li {
 * {
   box-sizing: border-box;
 }
+
+.article {
+  margin: auto;
+  padding: 0px 20px;
+  width: 58%;
+  max-width: 480px;
+  min-width: 300px;
+}
+
+@media screen and (max-width: 425px) {
+  .article {
+    width: auto;
+  }
+}

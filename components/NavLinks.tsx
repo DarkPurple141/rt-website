@@ -1,4 +1,4 @@
-import { FunctionComponent, HTMLProps } from 'react'
+import { forwardRef, HTMLProps } from 'react'
 import Link from 'next/link'
 import { TABLET_BREAKPOINT } from '../lib/constants'
 
@@ -10,66 +10,65 @@ type Props = {
   }[]
 } & HTMLProps<HTMLDivElement>
 
-const NavLinks: FunctionComponent<Props> = ({
-  links,
-  className,
-  selectedLink,
-}) => (
-  <>
-    <ul className={className}>
-      {links.map((p) => (
-        <li key={p.href}>
-          <Link href="/[project]" as={p.href}>
-            <a
-              className={
-                selectedLink === p.href ? 'project-link active' : 'project-link'
-              }
-            >
-              {p.name}
-            </a>
+const NavLinks = forwardRef<HTMLUListElement, Props>(
+  ({ links, className, selectedLink }, ref) => (
+    <>
+      <ul className={className} ref={ref}>
+        {links.map((p) => (
+          <li key={p.href}>
+            <Link href="/[project]" as={p.href}>
+              <a
+                className={
+                  selectedLink === p.href
+                    ? 'project-link active'
+                    : 'project-link'
+                }
+              >
+                {p.name}
+              </a>
+            </Link>
+          </li>
+        ))}
+        <li id="about">
+          <Link href="/about">
+            <a className="project-link">About</a>
           </Link>
         </li>
-      ))}
-      <li id="about">
-        <Link href="/about">
-          <a className="project-link">About</a>
-        </Link>
-      </li>
-    </ul>
-    <style jsx>{`
-      .project-link {
-        line-height: 2em;
-        padding: 0.2em 0;
-      }
-
-      #about {
-        margin-top: 20px;
-      }
-
-      @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
-        ul {
-          margin: 10px 0;
-          padding: 10px;
-        }
-
-        .project-links {
-          display: none;
-        }
-
-        .project-link.active {
-          color: #f1eeea;
-        }
-
-        .project-link:hover {
-          color: white;
+      </ul>
+      <style jsx>{`
+        .project-link {
+          line-height: 2em;
+          padding: 0.2em 0;
         }
 
         #about {
-          margin-top: 0;
+          margin-top: 20px;
         }
-      }
-    `}</style>
-  </>
+
+        @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
+          ul {
+            padding: 2em 0;
+          }
+
+          .project-links {
+            display: none;
+          }
+
+          .project-link.active {
+            color: #f1eeea;
+          }
+
+          .project-link:hover {
+            color: white;
+          }
+
+          #about {
+            margin-top: 0;
+          }
+        }
+      `}</style>
+    </>
+  )
 )
 
 export default NavLinks

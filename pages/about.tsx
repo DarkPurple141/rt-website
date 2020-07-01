@@ -7,41 +7,39 @@ import { Client } from '../lib/prismic'
 
 type IProps = {
   doc: any
+  image: any
 }
 
 export const getStaticProps: GetStaticProps<IProps> = async () => {
+  const { data } = await await Client().getSingle('about_page', {})
   return {
     props: {
       projects: await getAllProjects(),
-      doc: await (await Client().getSingle('about_page', {})).data.body,
+      doc: data.body,
+      image: data.hero_image,
     },
   }
 }
 
-const About: FunctionComponent<IProps> = ({ doc }) => {
+const About: FunctionComponent<IProps> = ({ doc, image }) => {
   return (
     <>
       <div className="article">
-        <div className="false-image"></div>
+        <div className="false-image">
+          <img src={image.url} alt={image.alt} />
+        </div>
         <RichText render={doc} />
       </div>
       <style jsx>
         {`
           .false-image {
             margin-bottom: 20px;
-            width: 400px;
-            height: 400px;
-            background-color: #ccc;
+            max-width: 400px;
           }
 
-          .article {
-            width: 58%;
-            max-width: 480px;
-          }
-
-          .article h1 {
-            font-style: normal;
-            font-weight: 400;
+          img {
+            width: inherit
+            height: auto;
           }
         `}
       </style>

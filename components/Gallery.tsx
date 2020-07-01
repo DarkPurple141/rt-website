@@ -1,12 +1,27 @@
 import { FunctionComponent, HTMLProps, useState } from 'react'
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
+import { useWindowEvent } from '../lib/utils'
 
-type IProps = {
+interface IProps {
   images: HTMLProps<HTMLImageElement>[]
 }
 
 const Gallery: FunctionComponent<IProps> = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(0)
+
+  useWindowEvent('keyup', (e) => {
+    const { key } = e as KeyboardEvent
+
+    if (key === 'ArrowLeft') {
+      setSelectedImage(
+        (currentImage) =>
+          (currentImage - 1 < 0 ? images.length - 1 : currentImage - 1) %
+          images.length
+      )
+    } else if (key === 'ArrowRight') {
+      setSelectedImage((currentImage) => (currentImage + 1) % images.length)
+    }
+  })
 
   return (
     <>
@@ -21,21 +36,18 @@ const Gallery: FunctionComponent<IProps> = ({ images }) => {
         ))}
       </div>
       <style jsx>{`
-        .gallery img {
+        img {
+          position: absolute;
           transition: opacity 0.3s ease-in-out;
-        }
-
-        .gallery img {
           opacity: 0;
-          display: none;
         }
 
-        .gallery img.selected {
+        img.selected {
           opacity: 1;
-          display: block;
         }
 
         .gallery {
+          position: relative;
           max-width: 900px;
           padding: 10px;
           padding-top: 0;
@@ -48,14 +60,14 @@ const Gallery: FunctionComponent<IProps> = ({ images }) => {
             padding-top: 0;
           }
 
-          .gallery img {
+          img {
+            position: static;
             opacity: 1;
             margin: ${TABLET_PADDING}px 0;
-            display: block;
             max-height: none;
           }
 
-          .gallery img:first-of-type {
+          img:first-of-type {
             margin-top: 0;
           }
         }
