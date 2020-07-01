@@ -4,7 +4,7 @@ import { FunctionComponent } from 'react'
 interface IProps {
   title: string
   imageUrl: string
-  id: string
+  id?: string
 }
 
 const HeadBase: FunctionComponent<IProps> = ({ title, imageUrl, id }) => {

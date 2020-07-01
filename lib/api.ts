@@ -14,6 +14,6 @@ export async function getAllProjects() {
 }
 
 export async function getProject(id: string) {
-  const { data } = await Client().getByUID('project', id, {})
+  const data = await Client().getByUID('project', id, {})
   return data
 }

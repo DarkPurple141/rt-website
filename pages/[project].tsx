@@ -4,21 +4,22 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { getAllProjects, getProject } from '../lib/api'
 import Gallery from '../components/Gallery'
 import HeadBase from '../components/Head'
+import { Document } from 'prismic-javascript/types/documents'
 
 type IProps = {
-  project: Project
+  project: Document
   images: any[]
 }
 
 export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
-  const project: Project = await getProject((params as any).project)
+  const projectSlug = await getProject((params as any).project)
   return {
     props: {
-      images: await project.images.map(({ image }) => ({
+      images: await projectSlug.data.images.map(({ image }) => ({
         alt: image.alt,
         src: image.url,
       })),
-      project,
+      project: projectSlug,
       projects: await getAllProjects(),
     },
   }
@@ -36,14 +37,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Project: FunctionComponent<IProps> = ({ project, images }) => {
-  {
-    RichText.asText(project.name)
-  }
   return (
     <>
       <HeadBase
         id={project.uid}
-        title={RichText.asText(project.name)}
+        title={RichText.asText(project.data.name)}
         imageUrl={images[0] ? images[0].src : '/lilyfield.jpg'}
       />
       <Gallery images={images} />
