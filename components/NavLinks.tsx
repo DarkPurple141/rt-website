@@ -29,7 +29,7 @@ const NavLinks = forwardRef<HTMLUListElement, Props>(
             </Link>
           </li>
         ))}
-        <li id="about">
+        <li className="about">
           <Link href="/about">
             <a className="project-link">About</a>
           </Link>
@@ -62,7 +62,7 @@ const NavLinks = forwardRef<HTMLUListElement, Props>(
             color: white;
           }
 
-          #about {
+          .about {
             margin-top: 0;
           }
         }

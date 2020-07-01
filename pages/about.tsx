@@ -7,7 +7,7 @@ import { Client } from '../lib/prismic'
 
 type IProps = {
   doc: any
-  image: any
+  image: GalleryImage['image']
 }
 
 export const getStaticProps: GetStaticProps<IProps> = async () => {
