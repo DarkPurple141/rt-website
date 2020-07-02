@@ -34,12 +34,10 @@ const About: FunctionComponent<IProps> = ({ doc, image }) => {
         {`
           .false-image {
             margin-bottom: 20px;
-            max-width: 400px;
           }
 
           img {
-            width: inherit
-            height: auto;
+            width: inherit;
           }
         `}
       </style>

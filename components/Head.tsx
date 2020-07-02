@@ -32,10 +32,6 @@ const HeadBase: FunctionComponent<IProps> = ({ title, imageUrl, id }) => {
         content={`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`}
       />
       <meta name="twitter:card" content="summary" />
-      <meta
-        name="description"
-        content="Retallack Thompson are Sydney-based architects seeking to create timeless and enduring architecture, interior and landscape design."
-      />
     </Head>
   )
 }

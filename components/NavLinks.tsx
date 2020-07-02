@@ -11,7 +11,7 @@ type Props = {
 } & HTMLProps<HTMLDivElement>
 
 const NavLinks = forwardRef<HTMLUListElement, Props>(
-  ({ links, className, selectedLink }, ref) => (
+  ({ links, className, selectedLink, children }, ref) => (
     <>
       <ul className={className} ref={ref}>
         {links.map((p) => (
@@ -29,20 +29,12 @@ const NavLinks = forwardRef<HTMLUListElement, Props>(
             </Link>
           </li>
         ))}
-        <li className="about">
-          <Link href="/about">
-            <a className="project-link">About</a>
-          </Link>
-        </li>
+        <li>{children}</li>
       </ul>
       <style jsx>{`
         .project-link {
           line-height: 2em;
           padding: 0.2em 0;
-        }
-
-        #about {
-          margin-top: 20px;
         }
 
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
@@ -60,10 +52,6 @@ const NavLinks = forwardRef<HTMLUListElement, Props>(
 
           .project-link:hover {
             color: white;
-          }
-
-          .about {
-            margin-top: 0;
           }
         }
       `}</style>

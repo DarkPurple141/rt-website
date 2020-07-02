@@ -17,6 +17,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <meta property="og:type" content="website" />
+        <meta
+          name="description"
+          content="Retallack Thompson Architects is a Sydney-based architecture firm seeking to create timeless and enduring architecture, interior and landscape design."
+        />
       </Head>
       <Header projects={pageProps.projects}></Header>
       <main>

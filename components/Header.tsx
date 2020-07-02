@@ -17,14 +17,27 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
   return (
     <>
       <div id="mobileNav" style={{ height }}>
-        <NavLinks ref={ref} selectedLink={match} links={projects} />
+        <NavLinks ref={ref} selectedLink={match} links={projects}>
+          <Link href="/about">
+            <a className="project-link">About</a>
+          </Link>
+        </NavLinks>
       </div>
-      <header>
-        <Link href="/">
-          <a>
-            <h1 className="logo">{process.env.NEXT_PUBLIC_SITE_TITLE}</h1>
-          </a>
-        </Link>
+      <header itemScope itemType="http://schema.org/LocalBusiness">
+        <div>
+          <Link href="/">
+            <a>
+              <h1 className="logo" itemProp="name">
+                {process.env.NEXT_PUBLIC_SITE_TITLE}
+              </h1>
+            </a>
+          </Link>
+          <NavLinks
+            className="project-links"
+            selectedLink={match}
+            links={projects}
+          />
+        </div>
         <a
           id="navMenuButton"
           onClick={() =>
@@ -39,11 +52,36 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
         >
           Menu
         </a>
-        <NavLinks
-          className="project-links"
-          selectedLink={match}
-          links={projects}
-        />
+        <div className="desktop-only">
+          <p>
+            <Link href="/about">
+              <a>About</a>
+            </Link>
+          </p>
+          <p>
+            <Link href="/process">
+              <a>Process</a>
+            </Link>
+          </p>
+        </div>
+        <div className="contact desktop-only">
+          <address>
+            <p>157 Crown Street</p>
+            <p>Darlinghurst NSW 2010</p>
+          </address>
+          <p>
+            <span itemProp="telephone">
+              <a href="tel:+61280974246">+612 8097 4246</a>
+            </span>
+          </p>
+          <p>
+            <span itemProp="email">
+              <a href="mailto:mail@retallackthompson.com">
+                mail@retallackthompson.com
+              </a>
+            </span>
+          </p>
+        </div>
       </header>
       <style jsx>{`
         #mobileNav {
@@ -58,7 +96,15 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           display: none;
         }
 
+        .desktop-only p {
+          margin: 0;
+        }
+
         header {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: inherit;
           min-width: 200px;
         }
 
@@ -72,10 +118,12 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
           header {
             padding: 20px;
-            display: flex;
-            justify-content: space-between;
             flex-direction: row;
             width: 100%;
+          }
+
+          .desktop-only {
+            display: none;
           }
 
           .logo {

@@ -1,31 +1,21 @@
-import { FunctionComponent, HTMLProps, useState } from 'react'
+import { FunctionComponent, HTMLProps, MouseEventHandler } from 'react'
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
-import { useWindowEvent } from '../lib/utils'
+import { useGalleryController } from '../lib/controllers'
 
-interface IProps {
+export interface GalleryProps {
+  isAuto?: boolean
   images: HTMLProps<HTMLImageElement>[]
 }
 
-const Gallery: FunctionComponent<IProps> = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(0)
-
-  useWindowEvent('keyup', (e) => {
-    const { key } = e as KeyboardEvent
-
-    if (key === 'ArrowLeft') {
-      setSelectedImage(
-        (currentImage) =>
-          (currentImage - 1 < 0 ? images.length - 1 : currentImage - 1) %
-          images.length
-      )
-    } else if (key === 'ArrowRight') {
-      setSelectedImage((currentImage) => (currentImage + 1) % images.length)
-    }
-  })
+const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
+  const [selectedImage, onClick] = useGalleryController(images, isAuto)
 
   return (
     <>
-      <div className="gallery">
+      <div
+        className={`gallery ${isAuto ? 'automatic' : ''}`}
+        onClick={onClick as MouseEventHandler}
+      >
         {images.map(({ src, alt }, idx) => (
           <img
             key={src}
@@ -47,8 +37,10 @@ const Gallery: FunctionComponent<IProps> = ({ images }) => {
         }
 
         .gallery {
+          display: flex;
+          justify-content: center;
+          height: inherit;
           position: relative;
-          max-width: 900px;
           padding: 10px;
           padding-top: 0;
           margin: 0 auto;
@@ -56,15 +48,20 @@ const Gallery: FunctionComponent<IProps> = ({ images }) => {
 
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
           .gallery {
+            display: block;
             padding: ${TABLET_PADDING}px;
             padding-top: 0;
           }
 
           img {
+            width: calc(100vw - 40px);
+            max-height: none;
+            margin: ${TABLET_PADDING / 2}px 0;
+          }
+
+          :not(.automatic) > img {
             position: static;
             opacity: 1;
-            margin: ${TABLET_PADDING}px 0;
-            max-height: none;
           }
 
           img:first-of-type {
