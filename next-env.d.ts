@@ -7,6 +7,10 @@ type GalleryImage = {
   image: {
     alt: string
     url: string
+    dimensions: {
+      width: number
+      height: number
+    }
   }
 }
 

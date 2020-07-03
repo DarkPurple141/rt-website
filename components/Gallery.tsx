@@ -11,7 +11,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
   const [selectedImage, onClick] = useGalleryController(images, isAuto)
 
   return (
-    <>
+    <div className="container">
       <div
         className={`gallery ${isAuto ? 'automatic' : ''}`}
         onClick={onClick as MouseEventHandler}
@@ -25,7 +25,29 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
           />
         ))}
       </div>
+      {!isAuto && (
+        <div className="text">
+          <p>
+            <em>Erskineville, 2019</em>
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
+            voluptates facilis dolor aperiam, quisquam, ullam error culpa
+            voluptas quod itaque, aspernatur cum inventore asperiores commodi
+            omnis quas earum vitae illum ad. Aperiam, voluptates voluptate optio
+            explicabo praesentium ex non qui. Tenetur a quos optio obcaecati
+            sunt tempora, ullam enim est?
+          </p>
+        </div>
+      )}
       <style jsx>{`
+        .container {
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: row;
+          padding: 0 10px;
+        }
+
         img {
           position: absolute;
           transition: opacity 0.3s ease-in-out;
@@ -37,20 +59,38 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
         }
 
         .gallery {
+          flex: 1;
           display: flex;
           justify-content: center;
           height: inherit;
           position: relative;
-          padding: 10px;
-          padding-top: 0;
           margin: 0 auto;
         }
 
+        .text {
+          width: 150px;
+          margin: 0 ${TABLET_PADDING}px;
+          margin-right: auto;
+        }
+
+        .text p {
+          margin: 0;
+          margin-bottom: ${TABLET_PADDING}px;
+        }
+
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
+          .container {
+            display: block;
+            padding: 0 ${TABLET_PADDING}px;
+            flex-direction: column;
+          }
+
+          .text {
+            width: 68%;
+          }
+
           .gallery {
             display: block;
-            padding: ${TABLET_PADDING}px;
-            padding-top: 0;
           }
 
           img {
@@ -69,7 +109,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
           }
         }
       `}</style>
-    </>
+    </div>
   )
 }
 

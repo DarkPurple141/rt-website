@@ -112,7 +112,7 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           margin-top: 0;
           margin-bottom: 20px;
           font-weight: inherit;
-          font-size: inherit;
+          font-size: 16px;
         }
 
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
@@ -127,6 +127,7 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           }
 
           .logo {
+            font-size: inherit;
             margin: 0;
           }
 
