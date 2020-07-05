@@ -66,9 +66,13 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
             </Link>
           </p>
           <p>
-            <Link href="/process">
-              <a>Process</a>
-            </Link>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://instagram.com/retallackthompson"
+            >
+              Instagram
+            </a>
           </p>
         </div>
         <div className="contact desktop-only">

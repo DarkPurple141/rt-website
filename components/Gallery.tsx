@@ -1,46 +1,39 @@
 import { FunctionComponent, HTMLProps, MouseEventHandler } from 'react'
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
 import { useGalleryController } from '../lib/controllers'
-
+import { RichText } from 'prismic-reactjs'
 export interface GalleryProps {
   isAuto?: boolean
-  images: HTMLProps<HTMLImageElement>[]
+  slides: HTMLProps<Element>[]
 }
 
-const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
-  const [selectedImage, onClick] = useGalleryController(images, isAuto)
-
+const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
+  const [selectedImage, onClick] = useGalleryController(slides, isAuto)
   return (
     <div className="container">
       <div
         className={`gallery ${isAuto ? 'automatic' : ''}`}
         onClick={onClick as MouseEventHandler}
       >
-        {images.map(({ src, alt }, idx) => (
-          <img
-            key={src}
-            className={idx === selectedImage ? 'selected' : ''}
-            src={src}
-            alt={alt}
-          />
-        ))}
+        {slides.map((slide, idx) =>
+          slide.src ? (
+            <img
+              key={slide.src}
+              className={idx === selectedImage ? 'selected slide' : 'slide'}
+              src={slide.src}
+              alt={slide.alt}
+            />
+          ) : (
+            <div
+              key="text"
+              className={idx === selectedImage ? 'selected slide' : 'slide'}
+            >
+              <div className="text-slide">{RichText.asText(slide)}</div>
+              <div className="padding"></div>
+            </div>
+          )
+        )}
       </div>
-      {!isAuto && (
-        <div className="text">
-          <p>
-            <em>Erskineville, 2019</em>
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
-            voluptates facilis dolor aperiam, quisquam, ullam error culpa
-            voluptas quod itaque, aspernatur cum inventore asperiores commodi
-            omnis quas earum vitae illum ad. Aperiam, voluptates voluptate optio
-            explicabo praesentium ex non qui. Tenetur a quos optio obcaecati
-            sunt tempora, ullam enim est?
-          </p>
-        </div>
-      )}
-
       <style jsx>{`
         .container {
           display: flex;
@@ -49,13 +42,22 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
           height: inherit;
         }
 
-        img {
+        .slide {
           position: absolute;
           transition: opacity 0.3s ease-in-out;
           opacity: 0;
         }
 
-        img.selected {
+        .text-slide {
+          padding: ${TABLET_PADDING}px 0;
+          font-size: 2em;
+          width: 500px;
+          margin: auto;
+          border-top: 1px solid #a3a3a3;
+          border-bottom: 1px solid #a3a3a3;
+        }
+
+        .slide.selected {
           opacity: 1;
         }
 
@@ -70,7 +72,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
 
         .text {
           min-width: 150px;
-          width: calc((100% - 36px) / 4);
+          width: calc((100% - ${TABLET_PADDING}px) / 4);
           margin: 0 ${TABLET_PADDING}px;
         }
 
@@ -95,18 +97,22 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
             display: block;
           }
 
-          img {
-            width: calc(100vw - 40px);
+          .text-slide {
+            width: auto;
+          }
+
+          .slide {
+            width: calc(100vw - ${2 * TABLET_PADDING}px);
             max-height: none;
             margin: ${TABLET_PADDING / 2}px 0;
           }
 
-          :not(.automatic) > img {
+          :not(.automatic) > .slide {
             position: static;
             opacity: 1;
           }
 
-          img:first-of-type {
+          .slide:first-of-type {
             margin-top: 0;
           }
         }

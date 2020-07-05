@@ -1,10 +1,7 @@
 import { useState, MouseEventHandler, useCallback, HTMLProps } from 'react'
 import { useInterval, useWindowEvent } from '../utils'
 
-function useGalleryController(
-  images: HTMLProps<HTMLImageElement>[],
-  isAuto?: boolean
-) {
+function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
   const [selectedImage, setSelectedImage] = useState(0)
 
   const nextImage = useCallback(() => {
