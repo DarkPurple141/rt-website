@@ -28,8 +28,9 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
               key="text"
               className={idx === selectedImage ? 'selected slide' : 'slide'}
             >
-              <div className="text-slide">{RichText.asText(slide)}</div>
-              <div className="padding"></div>
+              <div className="text-slide">
+                <RichText render={slide} />
+              </div>
             </div>
           )
         )}
@@ -49,11 +50,9 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
         }
 
         .text-slide {
-          padding: ${TABLET_PADDING}px 0;
-          font-size: 2em;
+          padding-bottom: ${TABLET_PADDING}px;
           width: 500px;
           margin: auto;
-          border-top: 1px solid #a3a3a3;
           border-bottom: 1px solid #a3a3a3;
         }
 
