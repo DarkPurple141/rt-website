@@ -8,12 +8,14 @@ type Props = {
     name: string
     href: string
   }[]
-} & HTMLProps<HTMLDivElement>
+} & HTMLProps<HTMLUListElement>
+
+const noop = (e: any) => undefined
 
 const NavLinks = forwardRef<HTMLUListElement, Props>(
-  ({ links, className, selectedLink, children }, ref) => (
+  ({ links, className, selectedLink, onClick = noop, children }, ref) => (
     <>
-      <ul className={className} ref={ref}>
+      <ul className={className} ref={ref} onClick={onClick}>
         {links.map((p) => (
           <li key={p.href}>
             <Link href="/[project]" as={p.href}>

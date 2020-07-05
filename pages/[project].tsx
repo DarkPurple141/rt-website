@@ -43,7 +43,7 @@ const Project: FunctionComponent<IProps> = ({ project, images }) => {
       <HeadBase
         id={project.uid}
         title={RichText.asText(project.data.name)}
-        imageUrl={images[0] ? images[0].src : '/lilyfield.jpg'}
+        imageUrl={images[0].src}
       />
       <Gallery images={images} />
     </>

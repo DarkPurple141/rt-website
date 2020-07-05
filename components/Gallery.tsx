@@ -40,12 +40,13 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
           </p>
         </div>
       )}
+
       <style jsx>{`
         .container {
           display: flex;
           flex-wrap: nowrap;
           flex-direction: row;
-          padding: 0 10px;
+          height: inherit;
         }
 
         img {
@@ -68,9 +69,9 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
         }
 
         .text {
-          width: 150px;
+          min-width: 150px;
+          width: calc((100% - 36px) / 4);
           margin: 0 ${TABLET_PADDING}px;
-          margin-right: auto;
         }
 
         .text p {
@@ -86,7 +87,8 @@ const Gallery: FunctionComponent<GalleryProps> = ({ images, isAuto }) => {
           }
 
           .text {
-            width: 68%;
+            margin: 0;
+            width: 87%;
           }
 
           .gallery {

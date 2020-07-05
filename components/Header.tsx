@@ -17,7 +17,14 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
   return (
     <>
       <div id="mobileNav" style={{ height }}>
-        <NavLinks ref={ref} selectedLink={match} links={projects}>
+        <NavLinks
+          onClick={() => {
+            setHeight(0)
+          }}
+          ref={ref}
+          selectedLink={match}
+          links={projects}
+        >
           <Link href="/about">
             <a className="project-link">About</a>
           </Link>
@@ -96,6 +103,15 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           display: none;
         }
 
+        .contact {
+          line-height: 1.6;
+          color: #a3a3a3;
+        }
+
+        .contact:hover {
+          color: inherit;
+        }
+
         .desktop-only p {
           margin: 0;
         }
@@ -105,14 +121,16 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           flex-direction: column;
           justify-content: space-between;
           height: inherit;
+          line-height: 2em;
           min-width: 200px;
         }
 
         .logo {
+          letter-spacing: 0.0769231em;
           margin-top: 0;
           margin-bottom: 20px;
           font-weight: inherit;
-          font-size: 16px;
+          font-size: inherit;
         }
 
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
