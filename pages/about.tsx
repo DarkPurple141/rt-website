@@ -25,14 +25,14 @@ const About: FunctionComponent<IProps> = ({ doc, image }) => {
   return (
     <>
       <div className="article">
-        <div className="false-image">
+        <div className="image">
           <img src={image.url} alt={image.alt} />
         </div>
         <RichText render={doc} />
       </div>
       <style jsx>
         {`
-          .false-image {
+          .image {
             margin-bottom: 20px;
           }
 

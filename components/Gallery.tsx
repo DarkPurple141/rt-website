@@ -8,14 +8,17 @@ export interface GalleryProps {
 }
 
 const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
-  const [selectedImage, onClick] = useGalleryController(slides, isAuto)
+  const [selectedImage, onClick, filteredImages] = useGalleryController(
+    slides,
+    isAuto
+  )
   return (
     <div className="container">
       <div
         className={`gallery ${isAuto ? 'automatic' : ''}`}
         onClick={onClick as MouseEventHandler}
       >
-        {slides.map((slide, idx) =>
+        {(filteredImages as HTMLProps<Element>[]).map((slide, idx) =>
           slide.src ? (
             <img
               key={slide.src}
@@ -50,7 +53,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
         }
 
         .text-slide {
-          padding-bottom: ${TABLET_PADDING}px;
+          padding-bottom: ${TABLET_PADDING / 2}px;
           width: 500px;
           margin: auto;
           border-bottom: 1px solid #a3a3a3;

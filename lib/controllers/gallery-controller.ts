@@ -3,14 +3,19 @@ import { useInterval, useWindowEvent } from '../utils'
 
 function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
   const [selectedImage, setSelectedImage] = useState(0)
+  const filteredImages = images.filter((o: any) => o.src || o.length)
 
   const nextImage = useCallback(() => {
-    setSelectedImage((currentImage) => (currentImage + 1) % images.length)
-  }, [images])
+    setSelectedImage(
+      (currentImage) => (currentImage + 1) % filteredImages.length
+    )
+  }, [filteredImages])
 
   const previousImage = useCallback(() => {
-    setSelectedImage((currentImage) => (currentImage + 1) % images.length)
-  }, [images])
+    setSelectedImage(
+      (currentImage) => (currentImage + 1) % filteredImages.length
+    )
+  }, [filteredImages])
 
   useWindowEvent('keyup', (e) => {
     if (isAuto) return
@@ -43,7 +48,7 @@ function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
     }
   }
 
-  return [selectedImage, onClick]
+  return [selectedImage, onClick, filteredImages]
 }
 
 export default useGalleryController
