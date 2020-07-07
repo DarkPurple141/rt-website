@@ -60,6 +60,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
         }
 
         .slide.selected {
+          z-index: 2;
           opacity: 1;
         }
 
@@ -100,6 +101,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
           }
 
           .text-slide {
+            font-size: 14px;
             width: auto;
           }
 
