@@ -18,6 +18,9 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
         className={`gallery ${isAuto ? 'automatic' : ''}`}
         onClick={onClick as MouseEventHandler}
       >
+        <div className="slide-count">
+          {(selectedImage as number) + 1} / {slides.length}
+        </div>
         {(filteredImages as HTMLProps<Element>[]).map((slide, idx) =>
           slide.src ? (
             <img
@@ -44,6 +47,14 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
           flex-wrap: nowrap;
           flex-direction: row;
           height: inherit;
+        }
+
+        .slide-count {
+          color: #a3a3a3;
+          right: 0;
+          bottom: 0;
+          position: absolute;
+          z-index: 10;
         }
 
         .slide {
@@ -85,6 +96,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
         }
 
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
+          .slide-count {
+            display: none;
+          }
+
           .container {
             display: block;
             padding: 0 ${TABLET_PADDING}px;
@@ -96,17 +111,15 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
             width: 87%;
           }
 
+          .text-slide {
+            width: inherit;
+          }
+
           .gallery {
             display: block;
           }
 
-          .text-slide {
-            font-size: 14px;
-            width: auto;
-          }
-
           .slide {
-            width: calc(100vw - ${2 * TABLET_PADDING}px);
             max-height: none;
             margin: ${TABLET_PADDING / 2}px 0;
           }
