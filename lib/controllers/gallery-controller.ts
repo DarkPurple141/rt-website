@@ -13,7 +13,9 @@ function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
 
   const previousImage = useCallback(() => {
     setSelectedImage(
-      (currentImage) => (currentImage + 1) % filteredImages.length
+      (currentImage) =>
+        (currentImage - 1 < 0 ? filteredImages.length - 1 : currentImage - 1) %
+        filteredImages.length
     )
   }, [filteredImages])
 
