@@ -4,6 +4,7 @@ import { RichText } from 'prismic-reactjs'
 
 import { getAllProjects } from '../lib/api'
 import { Client } from '../lib/prismic'
+import { TABLET_BREAKPOINT } from '../lib/constants'
 
 type IProps = {
   doc: any
@@ -38,6 +39,12 @@ const About: FunctionComponent<IProps> = ({ doc, image }) => {
 
           img {
             width: inherit;
+          }
+
+          @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
+            .article {
+              margin-left: 8em;
+            }
           }
         `}
       </style>

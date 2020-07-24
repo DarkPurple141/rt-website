@@ -1,25 +1,36 @@
-import { useState, MouseEventHandler, useCallback, HTMLProps } from 'react'
+import {
+  useState,
+  MouseEventHandler,
+  useCallback,
+  HTMLProps,
+  useEffect,
+} from 'react'
+import { RichText } from 'prismic-reactjs'
 import { useInterval, useWindowEvent } from '../utils'
+import { useRouter } from 'next/router'
 
 function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
   const [selectedImage, setSelectedImage] = useState(0)
-  const filteredImages = images.filter((o: any) => o.src || o.length)
+  const router = useRouter()
+  const filteredImages = images.filter(o => o.src || RichText.asText(o))
 
   const nextImage = useCallback(() => {
-    setSelectedImage(
-      (currentImage) => (currentImage + 1) % filteredImages.length
-    )
+    setSelectedImage(currentImage => (currentImage + 1) % filteredImages.length)
   }, [filteredImages])
+
+  useEffect(() => {
+    setSelectedImage(0)
+  }, [router.asPath])
 
   const previousImage = useCallback(() => {
     setSelectedImage(
-      (currentImage) =>
+      currentImage =>
         (currentImage - 1 < 0 ? filteredImages.length - 1 : currentImage - 1) %
         filteredImages.length
     )
   }, [filteredImages])
 
-  useWindowEvent('keyup', (e) => {
+  useWindowEvent('keyup', e => {
     if (isAuto) return
 
     const { key } = e as KeyboardEvent
@@ -37,7 +48,7 @@ function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
     }
   }, 4000)
 
-  const onClick: MouseEventHandler = (e) => {
+  const onClick: MouseEventHandler = e => {
     e.preventDefault()
     if (isAuto) {
       return
@@ -50,7 +61,7 @@ function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
     }
   }
 
-  return [selectedImage, onClick, filteredImages]
+  return [selectedImage, onClick, filteredImages] as const
 }
 
 export default useGalleryController

@@ -1,4 +1,4 @@
-import { FunctionComponent, HTMLProps, MouseEventHandler } from 'react'
+import { FunctionComponent, HTMLProps } from 'react'
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
 import { useGalleryController } from '../lib/controllers'
 import { RichText } from 'prismic-reactjs'
@@ -14,14 +14,11 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
   )
   return (
     <div className="container">
-      <div
-        className={`gallery ${isAuto ? 'automatic' : ''}`}
-        onClick={onClick as MouseEventHandler}
-      >
+      <div className={`gallery ${isAuto ? 'automatic' : ''}`} onClick={onClick}>
         <div className="slide-count">
-          {(selectedImage as number) + 1} / {slides.length}
+          {selectedImage + 1} / {slides.length}
         </div>
-        {(filteredImages as HTMLProps<Element>[]).map((slide, idx) =>
+        {filteredImages.map((slide, idx) =>
           slide.src ? (
             <img
               key={slide.src}
