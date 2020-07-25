@@ -12,7 +12,13 @@ export type HomePage = PageDocument<{
 
 export async function getAllProjects() {
   const { results } = await Client().query(
-    Prismic.Predicates.at('document.type', 'project')
+    Prismic.Predicates.at('document.type', 'project'),
+    /**
+     * query follows [my.{document.type}.{attribute} [desc|asc]]
+     */
+    {
+      orderings: '[my.project.importance desc]',
+    }
   )
 
   return results.map(({ data, uid }) => ({
