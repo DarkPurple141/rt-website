@@ -21,8 +21,6 @@ export async function getAllProjects() {
     }
   )
 
-  console.info(results)
-
   return results.map(({ data, uid }) => ({
     name: RichText.asText(data.name),
     href: uid,
