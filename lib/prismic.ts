@@ -1,9 +1,13 @@
 import Prismic from 'prismic-javascript'
+import { NextApiRequest } from 'next'
 
 export const apiEndpoint = 'https://retallack-thompson.cdn.prismic.io/api/v2'
 export const accessToken = ''
 
-const createClientOptions = (req = null, prismicAccessToken?: string) => {
+const createClientOptions = (
+  req?: NextApiRequest,
+  prismicAccessToken?: string
+) => {
   const reqOption = req ? { req } : {}
   const accessTokenOption = prismicAccessToken
     ? { accessToken: prismicAccessToken }
@@ -15,7 +19,7 @@ const createClientOptions = (req = null, prismicAccessToken?: string) => {
 }
 
 // Client method to query documents from the Prismic repo
-export const Client = (req = null) =>
+export const Client = (req?: NextApiRequest) =>
   Prismic.client(apiEndpoint, createClientOptions(req, accessToken))
 
 export default Prismic
