@@ -1,5 +1,5 @@
 // https://hoangtrinhj.com/using-google-analytics-with-next-js
-export const GA_TRACKING_ID = 'UA-XXXXXXXXX-X' // This is your GA Tracking ID
+export const GA_TRACKING_ID = 'UA-25942721-5'
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
