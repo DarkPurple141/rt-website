@@ -16,7 +16,7 @@ const NavLinks = forwardRef<HTMLUListElement, Props>(
   ({ links, className, selectedLink, onClick = noop, children }, ref) => (
     <>
       <ul className={className} ref={ref} onClick={onClick}>
-        {links.map((p) => (
+        {links.map(p => (
           <li key={p.href}>
             <Link href="/[project]" as={p.href}>
               <a

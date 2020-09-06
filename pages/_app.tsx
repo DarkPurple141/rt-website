@@ -2,11 +2,25 @@ import './font.css'
 import './global.css'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+
 import Header from '../components/Header'
 import Layout from '../components/Layout'
+import * as gtag from '../lib/gtag'
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
   return (
     <Layout>
       <Head>
