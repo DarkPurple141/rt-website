@@ -3,6 +3,10 @@
 
 declare module 'prismic-reactjs'
 
+interface Window {
+  gtag: (type: string, ...args: any[]) => void
+}
+
 type GalleryImage = {
   image: {
     alt: string
