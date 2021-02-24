@@ -48,7 +48,7 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
         <a
           id="navMenuButton"
           onClick={() =>
-            setHeight((oldHeight) => {
+            setHeight(oldHeight => {
               if (oldHeight) {
                 return 0
               }

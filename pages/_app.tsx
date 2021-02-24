@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import * as gtag from '../lib/gtag'
+import { ContactSnippet } from '../components/Contact'
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -40,6 +41,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Header projects={pageProps.projects}></Header>
       <main>
         <Component {...pageProps} />
+        <ContactSnippet />
       </main>
     </Layout>
   )

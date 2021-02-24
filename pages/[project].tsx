@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'react'
+import type { FC } from 'react'
 import { RichText } from 'prismic-reactjs'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import type { GetStaticProps, GetStaticPaths } from 'next'
 import { getAllProjects, getProject } from '../lib/api'
 import Gallery, { GalleryProps } from '../components/Gallery'
 import HeadBase from '../components/Head'
-import { Document } from 'prismic-javascript/types/documents'
+import type { Document } from 'prismic-javascript/types/documents'
 
 type IProps = {
   project: Document
@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-const Project: FunctionComponent<IProps> = ({ project, slides }) => {
+const Project: FC<IProps> = ({ project, slides }) => {
   return (
     <>
       <HeadBase

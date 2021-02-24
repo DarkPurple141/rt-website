@@ -1,13 +1,15 @@
-import { FunctionComponent, HTMLProps } from 'react'
+import type { FC, HTMLProps } from 'react'
+import { RichText } from 'prismic-reactjs'
+
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
 import { useGalleryController } from '../lib/controllers'
-import { RichText } from 'prismic-reactjs'
+
 export interface GalleryProps {
   isAuto?: boolean
   slides: HTMLProps<Element>[]
 }
 
-const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
+const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
   const [selectedImage, onClick, filteredImages] = useGalleryController(
     slides,
     isAuto
