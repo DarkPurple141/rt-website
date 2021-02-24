@@ -46,10 +46,13 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
           flex-wrap: nowrap;
           flex-direction: row;
           height: inherit;
+          overflow: hidden;
         }
 
         .slide-count {
-          color: #a3a3a3;
+          background-color: rgba(241, 238, 234, 0.7);
+          padding: 1px 5px;
+          color: #737373;
           right: 0;
           bottom: 0;
           position: absolute;

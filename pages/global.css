@@ -29,6 +29,10 @@ body {
   display: block;
 }
 
+.desktop-only p {
+  margin: 0;
+}
+
 .mobile-only {
   display: none;
 }
@@ -58,7 +62,6 @@ address {
 
 img {
   height: auto;
-  max-width: 100%;
   max-height: var(--content-height);
 }
 
@@ -124,6 +127,7 @@ li {
   }
 
   img {
+    max-width: 100%;
     max-height: none;
   }
 
