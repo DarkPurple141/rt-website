@@ -38,8 +38,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="Retallack Thompson Architects is a Sydney-based architecture firm seeking to create timeless and enduring architecture, interior and landscape design."
         />
       </Head>
-      <Header projects={pageProps.projects}></Header>
-      <main>
+      <Header projects={pageProps.projects} />
+      <main data-page={pageProps.name}>
         <Component {...pageProps} />
         <ContactSnippet />
       </main>

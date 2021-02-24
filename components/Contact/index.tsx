@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { TABLET_BREAKPOINT } from '../lib/constants'
+import styles from './styles.module.css'
 
 const Telephone: FC = () => (
   <p>
@@ -18,7 +18,7 @@ const Email: FC = () => (
 )
 
 const Contact: FC = () => (
-  <div className="contact desktop-only">
+  <div className={`${styles.contact} desktop-only`}>
     <address>
       <p>157 Crown Street</p>
       <p>Darlinghurst NSW 2010</p>
@@ -29,16 +29,9 @@ const Contact: FC = () => (
 )
 
 export const ContactSnippet: FC = () => (
-  <div className="snippet">
+  <footer className={`${styles.contact} ${styles.snippet} mobile-only`}>
     <Telephone />
     <Email />
-    <style jsx>{`
-      @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
-        .snippet {
-          display: none;
-        }
-      }
-    `}</style>
-  </div>
+  </footer>
 )
 export default Contact

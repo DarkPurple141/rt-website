@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { TABLET_BREAKPOINT } from '../lib/constants'
 import NavLinks from './NavLinks'
+import Contact from './Contact'
 
 type IProps = {
   projects: Project[]
@@ -75,24 +76,7 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
             </a>
           </p>
         </div>
-        <div className="contact desktop-only">
-          <address>
-            <p>157 Crown Street</p>
-            <p>Darlinghurst NSW 2010</p>
-          </address>
-          <p>
-            <span itemProp="telephone">
-              <a href="tel:+61280974246">+612 8097 4246</a>
-            </span>
-          </p>
-          <p>
-            <span itemProp="email">
-              <a href="mailto:mail@retallackthompson.com">
-                mail@retallackthompson.com
-              </a>
-            </span>
-          </p>
-        </div>
+        <Contact />
       </header>
       <style jsx>{`
         #mobileNav {
@@ -105,19 +89,6 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
         #navMenuButton {
           cursor: pointer;
           display: none;
-        }
-
-        .contact {
-          line-height: 1.6;
-          color: #a3a3a3;
-        }
-
-        .contact:hover {
-          color: inherit;
-        }
-
-        .desktop-only p {
-          margin: 0;
         }
 
         header {
@@ -142,10 +113,6 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
             padding: 20px;
             flex-direction: row;
             width: 100%;
-          }
-
-          .desktop-only {
-            display: none;
           }
 
           .logo {
