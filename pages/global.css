@@ -126,6 +126,10 @@ li {
     height: initial;
   }
 
+  main[data-page] {
+    height: var(--content-height);
+  }
+
   img {
     max-width: 100%;
     max-height: none;

@@ -45,6 +45,7 @@ const About: FunctionComponent<IProps> = ({ doc, image }) => {
           @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
             .article {
               margin-left: 8em;
+              padding-bottom: calc(var(--grid-unit) * 2);
             }
           }
         `}
