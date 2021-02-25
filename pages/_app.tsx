@@ -12,6 +12,23 @@ import { ContactSnippet } from '../components/Contact'
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    const height = window.innerHeight
+    document.documentElement.style.setProperty(
+      '--mobile-viewport',
+      `${height}px`
+    )
+    function resetHeight() {
+      document.documentElement.style.setProperty(
+        '--mobile-viewport',
+        `${window.innerHeight}px`
+      )
+    }
+
+    window.addEventListener('resize', resetHeight)
+    return () => window.removeEventListener('resize', resetHeight)
+  }, [])
+
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url: string) => {

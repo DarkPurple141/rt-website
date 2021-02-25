@@ -1,3 +1,10 @@
+:root {
+  --grid-unit: 10px;
+  --content-height: calc(100vh - 100px);
+  --mobile-viewport: 100vh;
+  --mobile-content: calc(var(--mobile-viewport) - 66px - 80px);
+}
+
 html,
 body {
   background-color: #f1eeea;
@@ -16,8 +23,6 @@ body {
   text-transform: none;
   letter-spacing: 0.01em;
   font-size: 12px;
-  --grid-unit: 10px;
-  --content-height: calc(100vh - 100px);
 }
 
 .desktop-only {
@@ -123,7 +128,7 @@ li {
 
   /** non gallery pages */
   main[data-page] {
-    height: calc(100vh - 66px - 80px);
+    height: var(--mobile-content);
   }
 
   img {
