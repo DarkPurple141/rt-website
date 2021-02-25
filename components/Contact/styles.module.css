@@ -12,6 +12,5 @@
 }
 
 .snippet {
-  padding: 0 calc(var(--grid-unit) * 2);
-  padding-bottom: calc(var(--grid-unit) * 2);
+  padding: calc(var(--grid-unit) * 2);
 }

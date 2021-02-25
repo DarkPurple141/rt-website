@@ -20,11 +20,6 @@ body {
   --content-height: calc(100vh - 100px);
 }
 
-[data-page='home'] footer {
-  position: fixed;
-  bottom: 0;
-}
-
 .desktop-only {
   display: block;
 }
@@ -128,7 +123,7 @@ li {
 
   /** non gallery pages */
   main[data-page] {
-    height: calc(var(--content-height) - 50px);
+    height: calc(100vh - 66px - 80px);
   }
 
   img {
