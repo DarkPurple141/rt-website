@@ -126,8 +126,9 @@ li {
     height: initial;
   }
 
+  /** non gallery pages */
   main[data-page] {
-    height: var(--content-height);
+    height: calc(var(--content-height) - 50px);
   }
 
   img {
