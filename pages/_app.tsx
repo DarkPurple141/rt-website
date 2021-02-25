@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import * as gtag from '../lib/gtag'
+import { ContactSnippet } from '../components/Contact'
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -37,9 +38,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="Retallack Thompson Architects is a Sydney-based architecture firm seeking to create timeless and enduring architecture, interior and landscape design."
         />
       </Head>
-      <Header projects={pageProps.projects}></Header>
-      <main>
+      <Header projects={pageProps.projects} />
+      <main data-page={pageProps.name}>
         <Component {...pageProps} />
+        <ContactSnippet />
       </main>
     </Layout>
   )

@@ -1,13 +1,15 @@
-import { FunctionComponent, HTMLProps } from 'react'
+import type { FC, HTMLProps } from 'react'
+import { RichText } from 'prismic-reactjs'
+
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
 import { useGalleryController } from '../lib/controllers'
-import { RichText } from 'prismic-reactjs'
+
 export interface GalleryProps {
   isAuto?: boolean
   slides: HTMLProps<Element>[]
 }
 
-const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
+const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
   const [selectedImage, onClick, filteredImages] = useGalleryController(
     slides,
     isAuto
@@ -44,10 +46,13 @@ const Gallery: FunctionComponent<GalleryProps> = ({ slides, isAuto }) => {
           flex-wrap: nowrap;
           flex-direction: row;
           height: inherit;
+          overflow: hidden;
         }
 
         .slide-count {
-          color: #a3a3a3;
+          background-color: rgba(241, 238, 234, 0.7);
+          padding: 1px 5px;
+          color: #737373;
           right: 0;
           bottom: 0;
           position: absolute;

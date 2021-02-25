@@ -1,0 +1,16 @@
+.contact {
+  line-height: 1.6;
+  color: #a3a3a3;
+}
+
+.contact:hover {
+  color: inherit;
+}
+
+.contact p {
+  margin: 0;
+}
+
+.snippet {
+  padding: calc(var(--grid-unit) * 2);
+}

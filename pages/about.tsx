@@ -15,6 +15,7 @@ export const getStaticProps: GetStaticProps<IProps> = async () => {
   const { data } = await await Client().getSingle('about_page', {})
   return {
     props: {
+      name: 'about_page',
       projects: await getAllProjects(),
       doc: data.body,
       image: data.hero_image,
@@ -44,6 +45,7 @@ const About: FunctionComponent<IProps> = ({ doc, image }) => {
           @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
             .article {
               margin-left: 8em;
+              padding-bottom: calc(var(--grid-unit) * 2);
             }
           }
         `}
