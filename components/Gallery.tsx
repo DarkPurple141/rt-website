@@ -81,7 +81,6 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
           flex: 1;
           display: flex;
           justify-content: center;
-          height: inherit;
           position: relative;
           margin: 0 auto;
         }
