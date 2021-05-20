@@ -17,19 +17,22 @@ export async function writeImageToLocal(url: string): Promise<string> {
     const servedFileName = path.join('/img', base)
     const fileName = path.join(process.cwd(), './public/img', base)
 
-    http.request(url, response => {
+    const request = http.request(url, response => {
       const data = new Stream()
 
       response.on('data', chunk => {
         data.push(chunk)
       })
 
-      response.on('error', rej)
-
       response.on('end', () => {
-        fs.writeFileSync(fileName, data.read())
-        res(servedFileName)
+        fs.writeFile(fileName, data.read(), () => {
+          res(servedFileName)
+        })
       })
+
+      response.on('error', rej)
     })
+
+    request.end()
   })
 }
