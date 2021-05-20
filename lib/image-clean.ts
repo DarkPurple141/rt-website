@@ -13,7 +13,7 @@ import path from 'path'
 export async function writeImageToLocal(url: string): Promise<string> {
   return new Promise(res => {
     const parsedUrl = u.parse(url)
-    const base = path.basename(parsedUrl.pathname!)
+    const base = path.basename(parsedUrl.pathname!.replace(/\%2B/g, '_'))
     const servedFileName = path.join('/img', base)
     const fileName = path.join(process.cwd(), './public/img', base)
 
