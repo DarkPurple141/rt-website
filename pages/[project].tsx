@@ -5,6 +5,7 @@ import { getAllProjects, getProject } from '../lib/api'
 import Gallery, { GalleryProps } from '../components/Gallery'
 import HeadBase from '../components/Head'
 import type { Document } from 'prismic-javascript/types/documents'
+import { writeImageToLocal } from '../lib/image-clean'
 
 type IProps = {
   project: Document
@@ -14,10 +15,15 @@ type IProps = {
 export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
   const projectSlug = await getProject((params as any).project)
   const gallery = projectSlug.data.gallery as any[]
-  const [first, ...rest] = gallery.map(({ image }) => ({
-    alt: image.alt,
-    src: image.url,
-  }))
+  const [first, ...rest] = await Promise.all(
+    gallery.map(async ({ image }) => {
+      const src = await writeImageToLocal(image.url)
+      return {
+        alt: image.alt,
+        src,
+      }
+    })
+  )
 
   return {
     props: {

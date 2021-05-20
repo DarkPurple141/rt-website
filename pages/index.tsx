@@ -2,6 +2,7 @@ import type { GetStaticProps } from 'next'
 import type { FC } from 'react'
 import { getAllProjects, getPage, HomePage } from '../lib/api'
 import Gallery, { GalleryProps } from '../components/Gallery'
+import { writeImageToLocal } from '../lib/image-clean'
 
 type IProps = {
   name: string
@@ -10,13 +11,19 @@ type IProps = {
 
 export const getStaticProps: GetStaticProps<IProps> = async () => {
   const doc = await getPage<HomePage>('home')
+  const slides = await Promise.all(
+    doc.data.images.map(async ({ image }) => {
+      const src = await writeImageToLocal(image.url)
+      return {
+        alt: image.alt,
+        src,
+      }
+    })
+  )
   return {
     props: {
       name: 'home',
-      slides: doc.data.images.map(({ image: { url, alt } }) => ({
-        alt,
-        src: url,
-      })),
+      slides,
       projects: await getAllProjects(),
     },
   }
