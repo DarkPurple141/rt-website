@@ -39,7 +39,8 @@ const About: FunctionComponent<IProps> = ({ doc, image }) => {
           }
 
           img {
-            width: inherit;
+            max-width: 100%;
+            height: auto;
           }
 
           @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
