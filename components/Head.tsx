@@ -62,7 +62,6 @@ const HeadBase: FunctionComponent<IProps> = ({
         name="twitter:url"
         content={`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`}
       />
-      <meta name="twitter:card" content="summary" />
     </Head>
   )
 }

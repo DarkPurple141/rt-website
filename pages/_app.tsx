@@ -50,7 +50,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <meta property="og:type" content="website" />
-        <meta key="og-image" property="og:image" content="/img/og-image.jpeg" />
+        <meta
+          key="og-image"
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_BASE_URL}/img/og-image.jpeg`}
+        />
+        <meta
+          key="twitter-image"
+          name="twitter:image"
+          content={`${process.env.NEXT_PUBLIC_BASE_URL}/img/og-image.jpeg`}
+        />
         <meta
           key="og:description"
           property="og:description"
@@ -61,6 +70,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="Retallack Thompson Architects is a Sydney-based architecture firm seeking to create timeless and enduring architecture, interior and landscape design."
         />
+        <meta key="twitter:card" name="twitter:card" content="summary" />
       </Head>
       <Header projects={pageProps.projects} />
       <main data-page={pageProps.name}>
