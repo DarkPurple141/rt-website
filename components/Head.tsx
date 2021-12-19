@@ -57,7 +57,11 @@ const HeadBase: FunctionComponent<IProps> = ({
         itemProp="url"
         content={`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`}
       />
-      <meta name="twitter:title" content={`${title} — Retallack Thompson`} />
+      <meta
+        key="twitter:title"
+        name="twitter:title"
+        content={`${title} — Retallack Thompson`}
+      />
       <meta
         name="twitter:url"
         content={`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`}

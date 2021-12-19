@@ -70,7 +70,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="Retallack Thompson Architects is a Sydney-based architecture firm seeking to create timeless and enduring architecture, interior and landscape design."
         />
-        <meta key="twitter:card" name="twitter:card" content="summary" />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={process.env.NEXT_PUBLIC_SITE_TITLE}
+        />
+        <meta
+          key="twitter:card"
+          name="twitter:card"
+          content="summary_large_image"
+        />
       </Head>
       <Header projects={pageProps.projects} />
       <main data-page={pageProps.name}>
