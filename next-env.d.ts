@@ -1,8 +1,6 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
-declare module 'prismic-reactjs'
-
 interface Window {
   gtag: (type: string, ...args: any[]) => void
 }
