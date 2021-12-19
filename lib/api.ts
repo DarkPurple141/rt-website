@@ -1,7 +1,6 @@
 import Prismic, { Client } from './prismic'
 import { RichText } from 'prismic-reactjs'
-import { Document } from 'prismic-javascript/types/documents'
-
+import { Document } from '@prismicio/client/types/documents'
 interface PageDocument<T> extends Document {
   data: T
 }

@@ -5,9 +5,15 @@ interface IProps {
   title: string
   imageUrl: string
   id?: string
+  description?: string
 }
 
-const HeadBase: FunctionComponent<IProps> = ({ title, imageUrl, id }) => {
+const HeadBase: FunctionComponent<IProps> = ({
+  title,
+  imageUrl,
+  id,
+  description,
+}) => {
   return (
     <Head>
       <title>{title}</title>
@@ -20,7 +26,19 @@ const HeadBase: FunctionComponent<IProps> = ({ title, imageUrl, id }) => {
         property="og:url"
         content={`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`}
       />
-      <meta property="og:image" content={imageUrl} />
+      {imageUrl && (
+        <>
+          <meta name="twitter:image" content={imageUrl} />
+          <meta property="og:image" content={imageUrl} />
+        </>
+      )}
+      {description && (
+        <>
+          <meta name="description" content={description} />
+          <meta property="og:description" content={description} />
+          <meta name="twitter:description" content={description} />
+        </>
+      )}
       <meta itemProp="name" content={`${title} — Retallack Thompson`} />
       <meta
         itemProp="url"

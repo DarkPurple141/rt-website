@@ -1,18 +1,17 @@
-import {
-  useState,
-  MouseEventHandler,
-  useCallback,
-  HTMLProps,
-  useEffect,
-} from 'react'
-import { RichText } from 'prismic-reactjs'
+import { useState, MouseEventHandler, useCallback, useEffect } from 'react'
+import { RichText, RichTextBlock } from 'prismic-reactjs'
 import { useInterval, useWindowEvent } from '../utils'
 import { useRouter } from 'next/router'
 
-function useGalleryController(images: HTMLProps<Element>[], isAuto?: boolean) {
+function useGalleryController(
+  images: Array<RichTextBlock[] | HTMLImageElement>,
+  isAuto?: boolean
+) {
   const [selectedImage, setSelectedImage] = useState(0)
   const router = useRouter()
-  const filteredImages = images.filter(o => o.src || RichText.asText(o))
+  const filteredImages = images.filter(
+    o => (o as HTMLImageElement).src || RichText.asText(o as RichTextBlock[])
+  )
 
   const nextImage = useCallback(() => {
     setSelectedImage(currentImage => (currentImage + 1) % filteredImages.length)

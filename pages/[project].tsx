@@ -1,10 +1,10 @@
 import type { FC } from 'react'
-import { RichText } from 'prismic-reactjs'
+import { RichText, RichTextBlock } from 'prismic-reactjs'
 import type { GetStaticProps, GetStaticPaths } from 'next'
 import { getAllProjects, getProject } from '../lib/api'
 import Gallery, { GalleryProps } from '../components/Gallery'
 import HeadBase from '../components/Head'
-import type { Document } from 'prismic-javascript/types/documents'
+import type { Document } from '@prismicio/client/types/documents'
 import { writeImageToLocal } from '../lib/image-clean'
 
 type IProps = {
@@ -46,12 +46,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Project: FC<IProps> = ({ project, slides }) => {
+  const [splash, copy] = slides
   return (
     <>
       <HeadBase
         id={project.uid}
         title={RichText.asText(project.data.name)}
-        imageUrl={slides[0].src!}
+        imageUrl={(splash as HTMLImageElement).src}
+        description={RichText.asText(copy as RichTextBlock[])}
       />
       <Gallery slides={slides} />
     </>

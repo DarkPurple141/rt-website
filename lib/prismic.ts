@@ -1,4 +1,4 @@
-import Prismic from 'prismic-javascript'
+import Prismic from '@prismicio/client'
 
 export const apiEndpoint = 'https://retallack-thompson.cdn.prismic.io/api/v2'
 export const accessToken = ''

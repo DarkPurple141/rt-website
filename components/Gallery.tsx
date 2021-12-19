@@ -1,12 +1,12 @@
-import type { FC, HTMLProps } from 'react'
-import { RichText } from 'prismic-reactjs'
+import type { FC } from 'react'
+import { RichText, RichTextBlock } from 'prismic-reactjs'
 
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
 import { useGalleryController } from '../lib/controllers'
 
 export interface GalleryProps {
   isAuto?: boolean
-  slides: HTMLProps<Element>[]
+  slides: Array<RichTextBlock[] | HTMLImageElement>
 }
 
 const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
@@ -21,7 +21,7 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
           {selectedImage + 1} / {slides.length}
         </div>
         {filteredImages.map((slide, idx) =>
-          slide.src ? (
+          !Array.isArray(slide) ? (
             <img
               key={slide.src}
               className={idx === selectedImage ? 'selected slide' : 'slide'}
