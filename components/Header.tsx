@@ -36,7 +36,7 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           <Link href="/">
             <a>
               <h1 className="logo" itemProp="name">
-                {process.env.NEXT_PUBLIC_SITE_TITLE}
+                Retallack Thompson
               </h1>
             </a>
           </Link>
