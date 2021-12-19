@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps<IProps> = async () => {
       return {
         alt: image.alt,
         src,
-      }
+      } as HTMLImageElement
     })
   )
   return {
