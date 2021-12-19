@@ -23,19 +23,24 @@ const HeadBase: FunctionComponent<IProps> = ({
       />
       <meta property="og:title" content={`${title} — Retallack Thompson`} />
       <meta
+        key="og:url"
         property="og:url"
         content={`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`}
       />
       {imageUrl && (
         <>
-          <meta name="twitter:image" content={imageUrl} />
-          <meta property="og:image" content={imageUrl} />
+          <meta key="twitter-image" name="twitter:image" content={imageUrl} />
+          <meta key="og-image" property="og:image" content={imageUrl} />
         </>
       )}
       {description && (
         <>
-          <meta name="description" content={description} />
-          <meta property="og:description" content={description} />
+          <meta key="description" name="description" content={description} />
+          <meta
+            key="og:description"
+            property="og:description"
+            content={description}
+          />
           <meta name="twitter:description" content={description} />
         </>
       )}
