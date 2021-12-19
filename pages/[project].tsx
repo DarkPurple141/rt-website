@@ -52,7 +52,7 @@ const Project: FC<IProps> = ({ project, slides }) => {
       <HeadBase
         id={project.uid}
         title={RichText.asText(project.data.name)}
-        imageUrl={(splash as HTMLImageElement).src}
+        imagePath={(splash as HTMLImageElement).src}
         description={RichText.asText(copy as RichTextBlock[])}
       />
       <Gallery slides={slides} />

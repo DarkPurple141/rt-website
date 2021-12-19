@@ -3,14 +3,14 @@ import { FunctionComponent } from 'react'
 
 interface IProps {
   title: string
-  imageUrl: string
+  imagePath: string
   id?: string
   description?: string
 }
 
 const HeadBase: FunctionComponent<IProps> = ({
   title,
-  imageUrl,
+  imagePath,
   id,
   description,
 }) => {
@@ -27,10 +27,18 @@ const HeadBase: FunctionComponent<IProps> = ({
         property="og:url"
         content={`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`}
       />
-      {imageUrl && (
+      {imagePath && (
         <>
-          <meta key="twitter-image" name="twitter:image" content={imageUrl} />
-          <meta key="og-image" property="og:image" content={imageUrl} />
+          <meta
+            key="twitter-image"
+            name="twitter:image"
+            content={`${process.env.NEXT_PUBLIC_BASE_URL}${imagePath}`}
+          />
+          <meta
+            key="og-image"
+            property="og:image"
+            content={`${process.env.NEXT_PUBLIC_BASE_URL}${imagePath}`}
+          />
         </>
       )}
       {description && (
