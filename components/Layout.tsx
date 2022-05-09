@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react'
+
 import { TABLET_BREAKPOINT } from '../lib/constants'
 
 const Layout: FunctionComponent = ({ children }) => (

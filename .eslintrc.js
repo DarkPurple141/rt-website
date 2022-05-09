@@ -23,11 +23,12 @@ module.exports = {
       version: 'detect',
     },
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'import'],
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
+    'import/order': ['error', { 'newlines-between': 'always' }],
   },
 }

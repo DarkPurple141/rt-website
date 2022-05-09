@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import { FunctionComponent } from 'react'
-import { RichText } from 'prismic-reactjs'
+import { PrismicRichText } from '@prismicio/react'
 
 import { getAllProjects } from '../lib/api'
 import { Client } from '../lib/prismic'
@@ -30,7 +30,7 @@ const About: FunctionComponent<IProps> = ({ doc, image }) => {
         <div className="image">
           <img src={image.url} alt={image.alt} />
         </div>
-        <RichText render={doc} />
+        <PrismicRichText field={doc} />
       </div>
       <style jsx>
         {`

@@ -1,7 +1,8 @@
+import { asText } from '@prismicio/helpers'
+import type { PrismicDocument } from '@prismicio/types'
+
 import Prismic, { Client } from './prismic'
-import { RichText } from 'prismic-reactjs'
-import { Document } from '@prismicio/client/types/documents'
-interface PageDocument<T> extends Document {
+interface PageDocument<T> extends PrismicDocument {
   data: T
 }
 
@@ -21,18 +22,18 @@ export async function getAllProjects() {
   )
 
   return results.map(({ data, uid }) => ({
-    name: RichText.asText(data.name),
+    name: asText(data.name),
     href: uid,
     uid,
   })) as Project[]
 }
 
-export async function getProject(id: string) {
+export async function getProject<T extends PrismicDocument>(id: string) {
   const data = await Client().getByUID('project', id, {})
-  return data
+  return data as T
 }
 
-export async function getPage<T extends Document>(page: string) {
+export async function getPage<T extends PrismicDocument>(page: string) {
   const doc = await Client().getSingle(page, {})
   return doc as T
 }
