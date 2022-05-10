@@ -18,7 +18,7 @@ export async function getAllProjects() {
     /**
      * query follows [my.{document.type}.{attribute} [desc|asc]]
      */
-    orderings: '[my.project.importance desc]',
+    orderings: 'my.project.importance desc',
   })
 
   return results.map(({ data, uid }) => ({
