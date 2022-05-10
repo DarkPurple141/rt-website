@@ -1,24 +1,6 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
+/// <reference types="next/image-types/global" />
 
-interface Window {
-  gtag: (type: string, ...args: any[]) => void
-}
-
-type GalleryImage = {
-  image: {
-    alt: string
-    url: string
-    dimensions: {
-      width: number
-      height: number
-    }
-  }
-}
-
-type Project = {
-  uid: string
-  name: string
-  href: string
-  images: GalleryImage[]
-}
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/basic-features/typescript for more information.
