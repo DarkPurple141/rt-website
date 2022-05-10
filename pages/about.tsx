@@ -12,7 +12,8 @@ type IProps = {
 }
 
 export const getStaticProps: GetStaticProps<IProps> = async () => {
-  const { data } = await await Client().getSingle('about_page', {})
+  const client = Client()
+  const { data } = await client.getSingle('about_page', {})
   return {
     props: {
       name: 'about_page',
