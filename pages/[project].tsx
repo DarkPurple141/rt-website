@@ -20,7 +20,9 @@ export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
     gallery.map(async ({ image }) => {
       const src = await writeImageToLocal(image.url)
       return {
-        alt: image.alt,
+        height: image.dimensions.height,
+        width: image.dimensions.width,
+        alt: image.alt || projectSlug.uid,
         src,
       }
     })
