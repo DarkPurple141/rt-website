@@ -1,7 +1,9 @@
 import { FunctionComponent, useState, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
 import { TABLET_BREAKPOINT } from '../lib/constants'
+
 import NavLinks from './NavLinks'
 import Contact from './Contact'
 

@@ -1,12 +1,13 @@
 import type { FC } from 'react'
-import { RichText, RichTextBlock } from 'prismic-reactjs'
+import { PrismicRichText } from '@prismicio/react'
+import type { RichTextField } from '@prismicio/types'
 
 import { TABLET_BREAKPOINT, TABLET_PADDING } from '../lib/constants'
 import { useGalleryController } from '../lib/controllers'
 
 export interface GalleryProps {
   isAuto?: boolean
-  slides: Array<RichTextBlock[] | HTMLImageElement>
+  slides: Array<RichTextField | HTMLImageElement>
 }
 
 const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
@@ -34,7 +35,7 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
               className={idx === selectedImage ? 'selected slide' : 'slide'}
             >
               <div className="text-slide">
-                <RichText render={slide} />
+                <PrismicRichText field={slide} />
               </div>
             </div>
           )

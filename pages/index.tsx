@@ -1,5 +1,6 @@
 import type { GetStaticProps } from 'next'
 import type { FC } from 'react'
+
 import { getAllProjects, getPage, HomePage } from '../lib/api'
 import Gallery, { GalleryProps } from '../components/Gallery'
 import { writeImageToLocal } from '../lib/image-clean'
