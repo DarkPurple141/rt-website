@@ -63,7 +63,8 @@ address {
 }
 
 img {
-  height: auto;
+  width: auto;
+  height: var(--content-height);
   max-height: var(--content-height);
 }
 
@@ -135,6 +136,7 @@ li {
   }
 
   img {
+    height: auto;
     max-width: 100%;
     max-height: none;
   }

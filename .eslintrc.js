@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/no-non-null-assertion': 0,
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'import/order': ['error', { 'newlines-between': 'always' }],

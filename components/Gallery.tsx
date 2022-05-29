@@ -23,12 +23,19 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
         </div>
         {filteredImages.map((slide, idx) =>
           !Array.isArray(slide) ? (
-            <img
-              key={slide.src}
-              className={idx === selectedImage ? 'selected slide' : 'slide'}
-              src={slide.src}
-              alt={slide.alt}
-            />
+            <picture key={slide.src}>
+              <source media="(max-width: 768px)" srcSet={slide.srcset} />
+              <img
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                style={{ backgroundColor: slide.fill }}
+                className={idx === selectedImage ? 'selected slide' : 'slide'}
+                src={slide.src}
+                alt={slide.alt}
+                width={slide.width}
+                height={slide.height}
+              />
+            </picture>
           ) : (
             <div
               key="text"
@@ -97,6 +104,12 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
           margin-bottom: ${TABLET_PADDING}px;
         }
 
+        /* need this so that picture children inherit flex properties */
+        picture {
+          display: flex;
+          justify-content: center;
+        }
+
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
           .slide-count {
             display: none;
@@ -126,7 +139,7 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
             margin: ${TABLET_PADDING / 2}px 0;
           }
 
-          :not(.automatic) > .slide {
+          :not(.automatic) .slide {
             position: static;
             opacity: 1;
           }
