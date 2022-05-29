@@ -6,6 +6,8 @@ import path from 'path'
 
 import sharp, { Stats } from 'sharp'
 
+import { TABLET_BREAKPOINT } from './constants'
+
 /**
  * Updates the local public folder with the canonical version of the image from the cms.
  *
@@ -40,7 +42,7 @@ export async function writeImageToLocal(
         const buffer = data.read()
         fs.writeFile(fileName, buffer, () => {
           const sharpImage = sharp(buffer)
-          sharpImage.resize({ width: 768 }).toFile(mobileFileName)
+          sharpImage.resize({ width: TABLET_BREAKPOINT }).toFile(mobileFileName)
           sharpImage.stats().then(({ dominant }) => {
             res({
               src: servedFileName,

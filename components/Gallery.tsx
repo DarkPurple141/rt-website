@@ -23,13 +23,18 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
         </div>
         {filteredImages.map((slide, idx) =>
           !Array.isArray(slide) ? (
-            <picture key={slide.src}>
-              <source media="(max-width: 768px)" srcSet={slide.srcset} />
-              <img
+            <picture
+              key={slide.src}
+              className={idx === selectedImage ? 'selected slide' : 'slide'}
+              style={{
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                style={{ backgroundColor: slide.fill }}
-                className={idx === selectedImage ? 'selected slide' : 'slide'}
+                backgroundColor: slide.fill,
+                aspectRatio: `${slide.width} / ${slide.height}`,
+              }}
+            >
+              <source media="(max-width: 768px)" srcSet={slide.srcset} />
+              <img
                 src={slide.src}
                 alt={slide.alt}
                 width={slide.width}
