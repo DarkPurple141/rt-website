@@ -18,6 +18,8 @@ export const getStaticProps: GetStaticProps<IProps> = async () => {
     doc.data.images.map(async ({ image }) => {
       const { src, dominant, mobileSrc } = await writeImageToLocal(image.url)
       return {
+        height: image.dimensions.height,
+        width: image.dimensions.width,
         alt: image.alt,
         src,
         srcset: mobileSrc,

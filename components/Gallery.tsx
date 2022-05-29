@@ -87,7 +87,7 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
 
         .slide.selected {
           z-index: 2;
-          opacity: 1;
+          opacity: 1 !important;
         }
 
         .gallery {
@@ -140,13 +140,15 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
           }
 
           .slide {
+            position: static;
+            opacity: 1;
             max-height: none;
             margin: ${TABLET_PADDING / 2}px 0;
           }
 
-          :not(.automatic) .slide {
-            position: static;
-            opacity: 1;
+          .automatic .slide {
+            opacity: 0;
+            position: absolute;
           }
 
           .slide:first-of-type {
