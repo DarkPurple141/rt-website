@@ -11,7 +11,8 @@ type Props = {
   }[]
 } & HTMLProps<HTMLUListElement>
 
-const noop = (e: any) => undefined
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+function noop<T extends unknown>(_: T) {}
 
 const NavLinks = forwardRef<HTMLUListElement, Props>(
   ({ links, className, selectedLink, onClick = noop, children }, ref) => (

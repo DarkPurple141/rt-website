@@ -18,12 +18,14 @@ export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
   const gallery = projectSlug.data.gallery as any[]
   const [first, ...rest] = await Promise.all(
     gallery.map(async ({ image }) => {
-      const src = await writeImageToLocal(image.url)
+      const { src, dominant, mobileSrc } = await writeImageToLocal(image.url)
       return {
         height: image.dimensions.height,
         width: image.dimensions.width,
         alt: image.alt || projectSlug.uid,
         src,
+        fill: `rgb(${dominant.r},${dominant.g},${dominant.b})`,
+        srcset: mobileSrc,
       }
     })
   )

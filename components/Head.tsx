@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { FunctionComponent } from 'react'
+import type { FC } from 'react'
 
 interface IProps {
   title: string
@@ -8,12 +8,7 @@ interface IProps {
   description?: string
 }
 
-const HeadBase: FunctionComponent<IProps> = ({
-  title,
-  imagePath,
-  id,
-  description,
-}) => {
+const HeadBase: FC<IProps> = ({ title, imagePath, id, description }) => {
   return (
     <Head>
       <title>{title}</title>

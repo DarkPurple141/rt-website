@@ -23,12 +23,24 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
         </div>
         {filteredImages.map((slide, idx) =>
           !Array.isArray(slide) ? (
-            <img
+            <picture
               key={slide.src}
               className={idx === selectedImage ? 'selected slide' : 'slide'}
-              src={slide.src}
-              alt={slide.alt}
-            />
+              style={{
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                backgroundColor: slide.fill,
+                aspectRatio: `${slide.width} / ${slide.height}`,
+              }}
+            >
+              <source media="(max-width: 768px)" srcSet={slide.srcset} />
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                width={slide.width}
+                height={slide.height}
+              />
+            </picture>
           ) : (
             <div
               key="text"
@@ -75,7 +87,7 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
 
         .slide.selected {
           z-index: 2;
-          opacity: 1;
+          opacity: 1 !important;
         }
 
         .gallery {
@@ -95,6 +107,12 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
         .text p {
           margin: 0;
           margin-bottom: ${TABLET_PADDING}px;
+        }
+
+        /* need this so that picture children inherit flex properties */
+        picture {
+          display: flex;
+          justify-content: center;
         }
 
         @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
@@ -122,13 +140,15 @@ const Gallery: FC<GalleryProps> = ({ slides, isAuto }) => {
           }
 
           .slide {
+            position: static;
+            opacity: 1;
             max-height: none;
             margin: ${TABLET_PADDING / 2}px 0;
           }
 
-          :not(.automatic) > .slide {
-            position: static;
-            opacity: 1;
+          .automatic .slide {
+            opacity: 0;
+            position: absolute;
           }
 
           .slide:first-of-type {

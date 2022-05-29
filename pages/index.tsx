@@ -10,15 +10,21 @@ type IProps = {
   projects: Pick<Project, 'name' | 'href'>[]
 } & GalleryProps
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const getStaticProps: GetStaticProps<IProps> = async () => {
   const doc = await getPage<HomePage>('home')
   const slides = await Promise.all(
     doc.data.images.map(async ({ image }) => {
-      const src = await writeImageToLocal(image.url)
+      const { src, dominant, mobileSrc } = await writeImageToLocal(image.url)
       return {
+        height: image.dimensions.height,
+        width: image.dimensions.width,
         alt: image.alt,
         src,
-      } as HTMLImageElement
+        srcset: mobileSrc,
+        fill: `rgb(${dominant.r},${dominant.g},${dominant.b})`,
+      }
     })
   )
   return {
