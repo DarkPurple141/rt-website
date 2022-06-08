@@ -23,7 +23,9 @@ export async function writeImageToLocal(
 }> {
   return new Promise((res, rej) => {
     const parsedUrl = u.parse(url)
-    const base = path.basename(parsedUrl.pathname!.replace(/\%2B/g, '_'))
+    const base = path.basename(
+      parsedUrl.pathname!.replace(/\%2B/g, '_').replace(/\+/g, '_')
+    )
     const mobileBase = `mobile-${base}`
     const servedFileName = path.join('/img', base)
     const servedMobileFileName = path.join('/img', mobileBase)
