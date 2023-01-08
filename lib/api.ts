@@ -3,7 +3,7 @@ import type { PrismicDocument } from '@prismicio/types'
 import { predicate } from '@prismicio/client'
 
 import { Client } from './prismic'
-interface PageDocument<T> extends PrismicDocument {
+interface PageDocument<T extends Record<string, any>> extends PrismicDocument {
   data: T
 }
 
