@@ -28,19 +28,17 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
           selectedLink={match}
           links={projects}
         >
-          <Link href="/about">
-            <a className="project-link">About</a>
+          <Link href="/about" className="project-link">
+            About
           </Link>
         </NavLinks>
       </div>
       <header itemScope itemType="http://schema.org/LocalBusiness">
         <div>
           <Link href="/">
-            <a>
-              <h1 className="logo" itemProp="name">
-                Retallack Thompson
-              </h1>
-            </a>
+            <h1 className="logo" itemProp="name">
+              Retallack Thompson
+            </h1>
           </Link>
           <NavLinks
             className="project-links"
@@ -64,9 +62,7 @@ const Header: FunctionComponent<IProps> = ({ projects = [] }) => {
         </a>
         <div className="desktop-only">
           <p>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
+            <Link href="/about">About</Link>
           </p>
           <p>
             <a

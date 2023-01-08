@@ -9,6 +9,7 @@ module.exports = {
     'prettier',
     'prettier/react',
     'prettier/@typescript-eslint',
+    'next',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -23,7 +24,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  plugins: ['react', '@typescript-eslint', 'prettier', 'import'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'import', '@next/next'],
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 0,

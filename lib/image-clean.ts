@@ -14,9 +14,7 @@ import { TABLET_BREAKPOINT } from './constants'
  * @param url image url location
  * @returns The root relative path to the final asset
  */
-export async function writeImageToLocal(
-  url: string
-): Promise<{
+export async function writeImageToLocal(url: string): Promise<{
   src: string
   mobileSrc: string
   dominant: Stats['dominant']
