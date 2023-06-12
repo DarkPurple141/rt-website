@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react'
+import { ReactNode } from 'react'
 
 import { TABLET_BREAKPOINT } from '../lib/constants'
 
-const Layout: FunctionComponent = ({ children }) => (
+const Layout = ({ children }: { children: ReactNode }) => (
   <div id="app">
     {children}
     <style jsx>{`
