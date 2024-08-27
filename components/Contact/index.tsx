@@ -21,7 +21,7 @@ const Email: FC = () => (
 const Contact: FC = () => (
   <div className={`${styles.contact} desktop-only`}>
     <address>
-      <p>157 Crown Street</p>
+      <p>4/138 Darlinghurst Road</p>
       <p>Darlinghurst NSW 2010</p>
     </address>
     <Telephone />
