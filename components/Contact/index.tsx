@@ -5,7 +5,7 @@ import styles from './styles.module.css'
 const Telephone: FC = () => (
   <p>
     <span itemProp="telephone">
-      <a href="tel:+61272089080">+612 7208 9080</a>
+      <a href="tel:+61290547001">+612 9054 7001</a>
     </span>
   </p>
 )
