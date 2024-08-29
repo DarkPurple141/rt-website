@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.1",
-    "@types/google.analytics": "^0.0.40",
+    "@types/google.analytics": "^0.0.46",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.0",
     "@types/sharp": "^0.30.2",
